@@ -1,9 +1,9 @@
 //Variables a definir//
-const char* ssid = "DIGIFIBRA-FXAS";                                      //Nombre de la red wifi a la que se concetara el sensor
-const char* password =  "QGYhDRRYYx";                                     //Contraseña de la red wifi a la que se concetara el sensor
-const char* adress = "http://sensorestfg.duckdns.org/post_datos.php";     //URL a la que se enviaran los datos
-const char* id =  "1";                                                    //ID del sensor
-const char* codigo =  "1111";                                             //Codigo de seguridad del sensor
+const char* ssid = "ssid";                                      //Nombre de la red wifi a la que se concetara el sensor
+const char* password =  "password";                                     //Contraseña de la red wifi a la que se concetara el sensor
+const char* adress = "url";     //URL a la que se enviaran los datos
+const char* id =  "id";                                                    //ID del sensor
+const char* codigo =  "codigo";                                             //Codigo de seguridad del sensor
 int  tiempo = 5000;                                                       //Tiempo (en milisegundos) entre los envios de datos
 const char* rootCACertificate = \										  //Certificado para la conexion HTTPS
      "-----BEGIN CERTIFICATE-----\n" \
@@ -75,7 +75,7 @@ void loop() {
     HTTPClient http;                                                      		//Se inicia el protocolo http
     String datos = "temp=" + String(aht20.readTemperature())+"&hum="+     		//Se preparan los datos a enviar con las lecturas del sensor y las variables
     String(aht20.readHumidity()) +"&id="+id+"&codigo="+codigo;         
-    http.begin(*client, "https://eltiempotfg.duckdns.org/post_datos.php");     
+    http.begin(*client,adress);     
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");      	//Se inicia la conexion con la URL indicada
     int codigo_respuesta = http.POST(datos);   									//Se hace post de los datos y se obtiene la respuesta
     String txt_respuesta = http.getString();
