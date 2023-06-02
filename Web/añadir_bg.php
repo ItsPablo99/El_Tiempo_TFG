@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $same_id=$bbdd->query($sql)->fetch();
     $sql="SELECT COUNT(*) FROM estaciones WHERE Nombre='$nombre'"; 
     $same_name=$bbdd->query($sql)->fetch();
-  
+
     //Si no existe ninguna estacion con el nombre o ID elegido
     if ($same_id[0] == 0 AND $same_name[0] == 0){ 
 
@@ -30,7 +30,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $bbdd->query($sql);
 
       //Se muestra el codigo para el nuevo sensor
-      echo'Introducido correctamente<br>Codigo para copiar:<br><br>
+      echo'<h2>Introducido correctamente</h2><br>
+      Diagrama para conectar el sensor:<br><br>
+      <img src="recursos/imagenes/conexion.png"/ width="454" height="414"><br><br>
+      Codigo para copiar:<br><br>
       <pre>
 
       //Variables a definir//
@@ -123,7 +126,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     //Si ya existe una estacion con el mismo nombre o ID
     }else{
-      echo"Error: Ya existe la estacion";
+      echo"<h2>Error: Ya existe la estacion</h2>";
     }
 }
 pie();
